@@ -17,13 +17,21 @@ const app = new Vue({
     data() {
         return {
             search: '',
-            city: ''
+            city: '',
+            tags: []
         }
     },
     created() {
 
     },
     methods: {
-
+        handleTag(tag) {
+            console.log('handle tag');
+            if(!this.tags.includes(tag)) {
+                this.tags.push(tag);
+            } else {
+                this.tags.splice(this.tags.indexOf(tag), 1);
+            }
+        }
     }
 }).$mount('#app');

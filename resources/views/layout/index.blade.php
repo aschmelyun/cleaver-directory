@@ -42,6 +42,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="flex -mx-4 mt-8">
+                    <div class="w-full px-4">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+                            Filter By Tag
+                        </label>
+                        <div>
+                            @foreach($tags as $tag)
+                                <button
+                                    class="inline-block font-medium text-sm mb-2 py-1 px-3 capitalize rounded border border-gray-600 mr-2 hover:bg-gray-600 hover:text-white transition duration-200 focus:outline-none"
+                                    :class="{'bg-gray-600': tags.includes('{{ $tag }}'), 'text-white': tags.includes('{{ $tag }}'), 'bg-white': !tags.includes('{{ $tag }}'), 'text-gray-600': !tags.includes('{{ $tag }}')}"
+                                    @click.prevent="handleTag('{{ $tag }}')"
+                                >{{ $tag }}</button>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="mt-6 px-8">
                 @foreach($listings as $listing)
