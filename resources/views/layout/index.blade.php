@@ -20,13 +20,13 @@
             <div class="bg-white pt-24 pb-12 px-8">
                 <div class="flex -mx-4">
                     <div class="w-1/2 px-4">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="search">
                             Search
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="search" type="text" placeholder="Pizza" v-model="search">
                     </div>
                     <div class="w-1/2 px-4">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="city">
                             City
                         </label>
                         <div class="relative">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="flex -mx-4 mt-8">
                     <div class="w-full px-4">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Filter By Tag
                         </label>
                         <div>
@@ -60,7 +60,8 @@
                 </div>
             </div>
             <div class="mt-6 px-8">
-                <div class="bg-white mb-6" v-for="listing in listings">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" v-text="'Viewing ' + filteredListings.length + ' of ' + listings.length"></label>
+                <div class="bg-white mb-6" v-for="listing in filteredListings">
                     <h3 v-text="listing.title"></h3>
                 </div>
             </div>
@@ -94,7 +95,8 @@
                     listings: [
                         @foreach($listings as $listing)
                         {
-                            title: "{{ $listing->title }}"
+                            title: "{{ $listing->title }}",
+                            tags: [@foreach(explode(',', $listing->tags) as $tag)"{{ $tag }}",@endforeach]
                         },
                         @endforeach
                     ]
@@ -111,6 +113,17 @@
                     } else {
                         this.tags.splice(this.tags.indexOf(tag), 1);
                     }
+                }
+            },
+            computed: {
+                filteredListings() {
+                    if(!this.tags.length) {
+                        return this.listings;
+                    }
+
+                    return this.listings.filter((listing, index) => {
+                        return this.tags.every(tag => listing.tags.includes(tag));
+                    });
                 }
             }
         }).$mount('#app');
