@@ -15,22 +15,22 @@
         ->unique();
 @endphp
 @section('content')
-    <div class="flex">
+    <div class="flex h-full" id="app">
         <main class="w-1/2 bg-gray-100">
-            <div class="bg-white py-12 px-8">
+            <div class="bg-white pt-24 pb-12 px-8">
                 <div class="flex -mx-4">
                     <div class="w-1/2 px-4">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                             Search
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="search" type="text" placeholder="Pizza">
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="search" type="text" placeholder="Pizza" v-model="search">
                     </div>
                     <div class="w-1/2 px-4">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                             City
                         </label>
                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="city">
+                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="city" v-model="city">
                                 <option value="">Select A City</option>
                                 @foreach($cities as $city)
                                     <option value="{{ $city }}">{{ $city }}</option>
@@ -52,7 +52,12 @@
             </div>
         </main>
         <aside class="w-1/2">
-
+            <gmap-map
+                :center="{lat:10, lng:10}"
+                :zoom="7"
+                style="width:100%; height:100%"
+                ref="mapRef"
+            ></gmap-map>
         </aside>
     </div>
 @endsection
