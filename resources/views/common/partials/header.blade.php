@@ -1,4 +1,4 @@
-<header class="header-main py-3 shadow-xl z-50 absolute w-full top-0 left-0">
+<header class="header-main py-3 shadow-lg z-50 absolute w-full top-0 left-0">
     <div class="flex items-center justify-between px-8">
         <div class="flex items-end">
             <svg width="108" height="28" viewBox="0 0 251 65" fill="none" xmlns="http://www.w3.org/2000/svg">

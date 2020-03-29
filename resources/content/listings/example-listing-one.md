@@ -6,6 +6,8 @@ title: Example Listing One
 address: 517 Clematis Street
 city: West Palm Beach
 state: FL
+lat: 26.713720
+long: -80.056120
 ---
 
 ## Example Listing One

@@ -60,20 +60,59 @@
                 </div>
             </div>
             <div class="mt-6 px-8">
-                @foreach($listings as $listing)
-                    <div class="bg-white mb-6">
-                        <h3>{{ $listing->title }}</h3>
-                    </div>
-                @endforeach
+                <div class="bg-white mb-6" v-for="listing in listings">
+                    <h3 v-text="listing.title"></h3>
+                </div>
             </div>
         </main>
         <aside class="w-1/2">
             <gmap-map
-                :center="{lat:10, lng:10}"
+                :center="{lat:20, lng:-80}"
                 :zoom="7"
                 style="width:100%; height:100%"
                 ref="mapRef"
-            ></gmap-map>
+            >
+                @foreach($listings as $listing)
+                    <gmap-marker
+                        :position="{lat: {{ $listing->lat }}, lng: {{ $listing->long }}}"
+                        :clickable="true"
+                        :draggable="false"
+                    ></gmap-marker>
+                @endforeach
+            </gmap-map>
         </aside>
     </div>
+@endsection
+@section('bottom-scripts')
+    <script type="text/javascript">
+        const app = new Vue({
+            data() {
+                return {
+                    search: '',
+                    city: '',
+                    tags: [],
+                    listings: [
+                        @foreach($listings as $listing)
+                        {
+                            title: "{{ $listing->title }}"
+                        },
+                        @endforeach
+                    ]
+                }
+            },
+            created() {
+
+            },
+            methods: {
+                handleTag(tag) {
+                    console.log('handle tag');
+                    if(!this.tags.includes(tag)) {
+                        this.tags.push(tag);
+                    } else {
+                        this.tags.splice(this.tags.indexOf(tag), 1);
+                    }
+                }
+            }
+        }).$mount('#app');
+    </script>
 @endsection

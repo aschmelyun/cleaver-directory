@@ -6,6 +6,8 @@ title: Example Listing Two
 address: 5090 PGA Blvd
 city: Palm Beach Gardens
 state: FL
+lat: 26.838020
+long: -80.114760
 ---
 
 ## Example Listing Two
