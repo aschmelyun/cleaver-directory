@@ -2,10 +2,10 @@
 <html lang="en-US">
 @include('common.partials.head')
 <body class="{{ $bodyClasses ?? '' }}">
-@include('common.partials.header')
-<div class="min-h-screen">
+<div class="min-h-screen antialiased">
+    @include('common.partials.header')
     @yield('content')
+    @include('common.partials.footer')
 </div>
-@include('common.partials.footer')
 </body>
 </html>
