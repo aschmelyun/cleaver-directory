@@ -3,8 +3,8 @@ view: layout.listing
 path: /example-listing-two
 tags: restaurants,take-out,american
 title: Example Listing Two
-address: 332 Evernia Street
-city: West Palm Beach
+address: 5090 PGA Blvd
+city: Palm Beach Gardens
 state: FL
 ---
 
