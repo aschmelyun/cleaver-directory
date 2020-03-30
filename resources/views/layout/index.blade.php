@@ -15,17 +15,17 @@
         ->unique();
 @endphp
 @section('content')
-    <div class="flex h-full" id="app">
-        <main class="w-1/2 bg-gray-100 overflow-y-scroll">
-            <div class="bg-white pt-24 pb-12 px-8">
-                <div class="flex -mx-4">
-                    <div class="w-1/2 px-4">
+    <div class="flex flex-wrap h-auto lg:h-full" id="app">
+        <main class="w-full lg:w-1/2 order-last lg:order-first bg-gray-100 overflow-y-auto lg:overflow-y-scroll">
+            <div class="bg-white pt-8 lg:pt-24 pb-4 lg:pb-12 px-4 lg:px-8">
+                <div class="flex flex-wrap -mx-4">
+                    <div class="w-full lg:w-1/2 px-4 mb-4 lg:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="search">
                             Search
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="search" type="text" placeholder="Pizza" v-model="search">
                     </div>
-                    <div class="w-1/2 px-4">
+                    <div class="w-full lg:w-1/2 px-4">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="city">
                             City
                         </label>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex -mx-4 mt-8">
+                <div class="flex -mx-4 mt-4 lg:mt-8">
                     <div class="w-full px-4">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Filter By Tag
@@ -59,19 +59,19 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-6 px-8">
+            <div class="mt-6 px-4 lg:px-8">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" v-text="'Viewing ' + filteredListings.length + ' of ' + listings.length"></label>
                 <div class="bg-white mb-6 px-6 py-4" v-for="(listing, listingIndex) in filteredListings" :key="listingIndex">
-                    <div class="flex items-start -mx-4">
-                        <div class="w-2/3 px-4">
+                    <div class="flex flex-wrap items-start -mx-4">
+                        <div class="w-full lg:w-2/3 px-4">
                             <a
                                 :href="listing.path"
                                 class="text-pink-600 block text-xl font-medium"
                                 v-html="listing.title"
                             ></a>
-                            <div class="flex">
+                            <div class="flex flex-wrap lg:flex-no-wrap">
                                 <div
-                                    class="block font-medium text-sm mb-2 capitalize text-gray-600"
+                                    class="block font-medium text-sm mb-1 lg:mb-2 capitalize text-gray-600 whitespace-no-wrap"
                                     style="font-size:0;"
                                     v-for="(tag, tagIndex) in listing.tags"
                                     :key="tagIndex"
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-1/3 px-4">
+                        <div class="w-full lg:w-1/3 px-4 mt-2 lg:mt-0">
                             <div class="font-semibold text-gray-700"><span v-text="listing.address"></span><br><span v-text="listing.city + ', ' + listing.state"></span></div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </main>
-        <aside class="w-1/2">
+        <aside class="w-full lg:w-1/2 h-64 lg:h-full order-first lg:order-last">
             @if($listings->count())
                 <gmap-map
                     :center="{lat:{{ $listings->first()->lat }}, lng:{{ $listings->first()->long }}}"
