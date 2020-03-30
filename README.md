@@ -4,6 +4,7 @@
 ![License](https://img.shields.io/github/license/aschmelyun/cleaver-directory.svg?style=flat-square)
 [![Build Status](https://img.shields.io/travis/aschmelyun/cleaver-directory/master.svg?style=flat-square)](https://travis-ci.org/aschmelyun/cleaver-directory)
 [![Total Downloads](https://img.shields.io/packagist/dt/aschmelyun/cleaver-directory.svg?style=flat-square)](https://packagist.org/packages/aschmelyun/cleaver-directory)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/45105de1-fbc1-49e1-a7b7-14069b881e58/deploy-status)](https://app.netlify.com/sites/happy-perlman-16e9cc/deploys)
 
 :fire: A blazing-fast static site generator for local directories built with PHP and Laravel's Blade, leveraging JSON or Markdown files for super-extensible content.
 
