@@ -12,7 +12,7 @@
 composer create-project aschmelyun/cleaver-directory your-site-name
 ```
 
-## Why build this
+## Why I built this
 
 During the COVID-19 outbreak, I really wanted to utilize my skills and provide my community with something that could be used for a positive purpose. I decided that a directory showcasing local restaurants that are still open, serving take-out and curbside pickup, would be the perfect use of my time.
 
