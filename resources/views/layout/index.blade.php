@@ -16,7 +16,7 @@
 @endphp
 @section('content')
     <div class="flex h-full" id="app">
-        <main class="w-1/2 bg-gray-100">
+        <main class="w-1/2 bg-gray-100 overflow-y-scroll">
             <div class="bg-white pt-24 pb-12 px-8">
                 <div class="flex -mx-4">
                     <div class="w-1/2 px-4">
@@ -88,20 +88,22 @@
             </div>
         </main>
         <aside class="w-1/2">
-            <gmap-map
-                :center="{lat:20, lng:-80}"
-                :zoom="7"
-                style="width:100%; height:100%"
-                ref="mapRef"
-            >
-                @foreach($listings as $listing)
-                    <gmap-marker
-                        :position="{lat: {{ $listing->lat }}, lng: {{ $listing->long }}}"
-                        :clickable="true"
-                        :draggable="false"
-                    ></gmap-marker>
-                @endforeach
-            </gmap-map>
+            @if($listings->count())
+                <gmap-map
+                    :center="{lat:{{ $listings->first()->lat }}, lng:{{ $listings->first()->long }}}"
+                    :zoom="11"
+                    style="width:100%; height:100%"
+                    ref="mapRef"
+                >
+                    @foreach($listings as $listing)
+                        <gmap-marker
+                            :position="{lat:{{ $listing->lat }}, lng:{{ $listing->long }}}"
+                            :clickable="true"
+                            :draggable="false"
+                        ></gmap-marker>
+                    @endforeach
+                </gmap-map>
+            @endif
         </aside>
     </div>
 @endsection
