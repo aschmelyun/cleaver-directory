@@ -61,9 +61,30 @@
             </div>
             <div class="mt-6 px-8">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" v-text="'Viewing ' + filteredListings.length + ' of ' + listings.length"></label>
-                <div class="bg-white mb-6" v-for="listing in filteredListings">
-                    <h3 v-text="listing.title"></h3>
-                </div>
+                @foreach($listings as $listing)
+                    <div class="bg-white mb-6 px-6 py-4">
+                        <div class="flex items-start -mx-4">
+                            <div class="w-2/3 px-4">
+                                <a
+                                    href="{{ $listing->path }}"
+                                    class="text-pink-600 block text-xl font-medium"
+                                >{{ $listing->title }}</a>
+                                <div class="flex">
+                                    @foreach(explode(',', $listing->tags) as $tag)
+                                        <span class="block font-medium text-sm mb-2 capitalize text-gray-600">{{ $tag }}@if(!$loop->last)<span class="mx-2">&bull;</span>@endif</span>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="w-1/3 px-4">
+                                <div class="font-semibold text-gray-700">{{ $listing->address }}<br>{{ $listing->city }}, {{ $listing->state }}</div>
+                            </div>
+                        </div>
+                        @php
+                            preg_match('/<p>(.*?)<\/p>/s', $listing->body, $match);
+                        @endphp
+                        <div class="text-gray-700 leading-relaxed border-t border-gray-200 pt-2 mt-1">{!! $match[0] !!}</div>
+                    </div>
+                @endforeach
             </div>
         </main>
         <aside class="w-1/2">
@@ -92,14 +113,7 @@
                     search: '',
                     city: '',
                     tags: [],
-                    listings: [
-                        @foreach($listings as $listing)
-                        {
-                            title: "{{ $listing->title }}",
-                            tags: [@foreach(explode(',', $listing->tags) as $tag)"{{ $tag }}",@endforeach]
-                        },
-                        @endforeach
-                    ]
+                    listings: []
                 }
             },
             created() {

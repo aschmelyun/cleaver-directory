@@ -10,8 +10,6 @@ lat: 26.713720
 long: -80.056120
 ---
 
-## Example Listing One
-
 Here's a few things about this place in particular. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 Vestibulum erat nibh, auctor sit amet odio eu, iaculis commodo nisl. Phasellus interdum orci in ante hendrerit elementum. Duis vel lacinia dui. Aenean mollis hendrerit elit vel feugiat.
