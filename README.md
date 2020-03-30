@@ -1,4 +1,4 @@
-# Cleaver
+# Cleaver Directory
 
 [![Current Version](https://img.shields.io/packagist/v/aschmelyun/cleaver-directory.svg?style=flat-square)](https://packagist.org/packages/aschmelyun/cleaver-directory)
 ![License](https://img.shields.io/github/license/aschmelyun/cleaver-directory.svg?style=flat-square)
@@ -11,6 +11,14 @@
 ```bash
 composer create-project aschmelyun/cleaver-directory your-site-name
 ```
+
+## Why build this
+
+During the COVID-19 outbreak, I really wanted to utilize my skills and provide my community with something that could be used for a positive purpose. I decided that a directory showcasing local restaurants that are still open, serving take-out and curbside pickup, would be the perfect use of my time.
+
+I decided to use my previously-built static site generator Cleaver as the base for this project, modifying and adding functionality, a base layout, and example content.
+
+This way, developers of any experience can clone this project for their area, use Markdown to easily add restaurants or businesses, and deploy the whole thing on a service like [Netlify](https://netlify.com) for **absolutely no cost**. 
 
 ## Requirements
 - PHP 7.1 or higher
