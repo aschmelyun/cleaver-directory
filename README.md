@@ -1,14 +1,14 @@
 # Cleaver
 
-[![Current Version](https://img.shields.io/packagist/v/aschmelyun/cleaver.svg?style=flat-square)](https://packagist.org/packages/aschmelyun/cleaver)
-![License](https://img.shields.io/github/license/aschmelyun/cleaver.svg?style=flat-square)
-[![Build Status](https://img.shields.io/travis/aschmelyun/cleaver/master.svg?style=flat-square)](https://travis-ci.org/aschmelyun/cleaver)
-[![Total Downloads](https://img.shields.io/packagist/dt/aschmelyun/cleaver.svg?style=flat-square)](https://packagist.org/packages/aschmelyun/cleaver)
+[![Current Version](https://img.shields.io/packagist/v/aschmelyun/cleaver-directory.svg?style=flat-square)](https://packagist.org/packages/aschmelyun/cleaver-directory)
+![License](https://img.shields.io/github/license/aschmelyun/cleaver-directory.svg?style=flat-square)
+[![Build Status](https://img.shields.io/travis/aschmelyun/cleaver-directory/master.svg?style=flat-square)](https://travis-ci.org/aschmelyun/cleaver-directory)
+[![Total Downloads](https://img.shields.io/packagist/dt/aschmelyun/cleaver-directory.svg?style=flat-square)](https://packagist.org/packages/aschmelyun/cleaver-directory)
 
-:fire: A blazing-fast static site generator that uses Laravel's Blade templating engine and leverages JSON or Markdown files for super-extensible content.
+:fire: A blazing-fast static site generator for local directories built with PHP and Laravel's Blade, leveraging JSON or Markdown files for super-extensible content.
 
 ```bash
-composer create-project aschmelyun/cleaver your-site-name
+composer create-project aschmelyun/cleaver-directory your-site-name
 ```
 
 ## Requirements
@@ -23,11 +23,30 @@ After creating your project with Composer, cd inside your project's root directo
 npm install
 ```
 
-From there you can build the site using the included demo content, which outputs to a `dist/` folder in your project root:
+From there you can build the demo site using the included example content, which outputs to a `dist/` folder in your project root:
 
 ```bash
 npm run dev
 ```
+
+## How the directory is structured
+
+Just like with the main Cleaver generator, Cleaver Directory uses a `resources/content` directory to hold Markdown or JSON files that makeup your site. 
+
+By default, there's a nested folder called `listings`, and this is where you should add in your shops, restaurants, and other businesses in your directory. When rendering a site, the framework will look for content that uses the `layout.listing` view, and passes this array of listings to the index view.
+
+Individual listing pages are built from the content files in that `listings` directory. Inside each one, the following variables are required in addition to the view and path on all Cleaver content pages:
+
+- title
+- address
+- city
+- state
+- lat
+- long
+
+See an example content page [here](https://github.com/aschmelyun/cleaver-directory/blob/master/resources/content/listings/taco-dive.md), and further documentation on the main [Cleaver documentation](https://usecleaver.com/docs/) page.
+
+You can also have plain content pages (see `submit.md` as an example), that you can use for informational pages, contact areas, FAQ, and more.
 
 ## Modifying your assets
 
@@ -52,15 +71,6 @@ npm run production
 Which will minify your assets and build the site again with the new versioned files.
 
 You can then publish your entire project to a host of your choice as long as the web root is pointed to the `/dist` folder. Additionally, you're free to just publish the built files in the dist folder by themselves.
-
-## Roadmap
-Cleaver is still very much in development, and while it's designed to remain as simple as possible there's a few features that could make for a better overall experience. Here's what's on the path ahead:
-
-- [x] Ability to use folders in content directory
-- [x] Add collection containing all content into each view
-- [ ] Ability to add in and use HTML in JSON content files
-- [ ] More detailed build errors if something goes wrong
-- [ ] A better cli interface and style during site builds
 
 ## Contact Info
 
