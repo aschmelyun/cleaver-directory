@@ -70,7 +70,15 @@
                                 v-html="listing.title"
                             ></a>
                             <div class="flex">
-                                <span class="block font-medium text-sm mb-2 capitalize text-gray-600" v-for="(tag, tagIndex) in listing.tags" :key="tagIndex" v-text="tag"></span>
+                                <div
+                                    class="block font-medium text-sm mb-2 capitalize text-gray-600"
+                                    style="font-size:0;"
+                                    v-for="(tag, tagIndex) in listing.tags"
+                                    :key="tagIndex"
+                                >
+                                    <span class="text-sm" v-text="tag"></span>
+                                    <span class="text-sm mx-2" v-if="tagIndex !== (listing.tags.length - 1)">&bull;</span>
+                                </div>
                             </div>
                         </div>
                         <div class="w-1/3 px-4">

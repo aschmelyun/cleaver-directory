@@ -5,3 +5,13 @@
 .header-main {
   background-image: linear-gradient(90deg, #ed64a6, #b83280);
 }
+
+.listing-body {
+
+  p {
+    @apply mb-2;
+  }
+  ul {
+    @apply list-disc leading-relaxed ml-8 mb-2;
+  }
+}
