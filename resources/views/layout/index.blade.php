@@ -16,7 +16,7 @@
 @endphp
 @section('content')
     <div class="flex flex-wrap h-auto lg:h-full" id="app">
-        <main class="w-full lg:w-1/2 order-last lg:order-first bg-gray-100 overflow-y-auto lg:overflow-y-scroll">
+        <main class="w-full h-auto lg:h-full lg:w-1/2 order-last lg:order-first bg-gray-100 overflow-y-auto lg:overflow-y-scroll">
             <div class="bg-white pt-8 lg:pt-24 pb-4 lg:pb-12 px-4 lg:px-8">
                 <div class="flex flex-wrap -mx-4">
                     <div class="w-full lg:w-1/2 px-4 mb-4 lg:mb-0">
@@ -88,6 +88,9 @@
                     <div class="text-gray-700 leading-relaxed border-t border-gray-200 pt-2 mt-1" v-text="listing.excerpt"></div>
                 </div>
             </div>
+            <footer class="px-4 lg:px-8 pb-4">
+                <p class="text-sm font-medium text-gray-600">Built by <a href="https://twitter.com/aschmelyun" class="text-pink-600 hover:text-pink-500 transition-colors duration-200" target="_blank" rel="noreferrer">Andrew Schmelyun</a> and <a href="https://github.com/aschmelyun/cleaver-directory" class="text-pink-600 hover:text-pink-500 transition-colors duration-200" target="_blank" rel="noreferrer">open sourced</a> under the MIT license</p>
+            </footer>
         </main>
         <aside class="w-full lg:w-1/2 h-64 lg:h-full order-first lg:order-last">
             @if($listings->count())
