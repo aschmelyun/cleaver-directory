@@ -186,6 +186,12 @@
                 filteredListings() {
                     let listings = this.listings;
 
+                    if(this.search) {
+                        listings = listings.filter((listing, index) => {
+                            return (listing.title.includes(this.search) || listing.city.includes(this.search) || listing.excerpt.includes(this.search));
+                        });
+                    }
+
                     if(this.city) {
                         listings = listings.filter((listing, index) => {
                             return listing.city === this.city;
