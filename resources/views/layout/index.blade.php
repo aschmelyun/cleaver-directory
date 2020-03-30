@@ -61,30 +61,24 @@
             </div>
             <div class="mt-6 px-8">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" v-text="'Viewing ' + filteredListings.length + ' of ' + listings.length"></label>
-                @foreach($listings as $listing)
-                    <div class="bg-white mb-6 px-6 py-4">
-                        <div class="flex items-start -mx-4">
-                            <div class="w-2/3 px-4">
-                                <a
-                                    href="{{ $listing->path }}"
-                                    class="text-pink-600 block text-xl font-medium"
-                                >{{ $listing->title }}</a>
-                                <div class="flex">
-                                    @foreach(explode(',', $listing->tags) as $tag)
-                                        <span class="block font-medium text-sm mb-2 capitalize text-gray-600">{{ $tag }}@if(!$loop->last)<span class="mx-2">&bull;</span>@endif</span>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="w-1/3 px-4">
-                                <div class="font-semibold text-gray-700">{{ $listing->address }}<br>{{ $listing->city }}, {{ $listing->state }}</div>
+                <div class="bg-white mb-6 px-6 py-4" v-for="(listing, listingIndex) in filteredListings" :key="listingIndex">
+                    <div class="flex items-start -mx-4">
+                        <div class="w-2/3 px-4">
+                            <a
+                                :href="listing.path"
+                                class="text-pink-600 block text-xl font-medium"
+                                v-html="listing.title"
+                            ></a>
+                            <div class="flex">
+                                <span class="block font-medium text-sm mb-2 capitalize text-gray-600" v-for="(tag, tagIndex) in listing.tags" :key="tagIndex" v-text="tag"></span>
                             </div>
                         </div>
-                        @php
-                            preg_match('/<p>(.*?)<\/p>/s', $listing->body, $match);
-                        @endphp
-                        <div class="text-gray-700 leading-relaxed border-t border-gray-200 pt-2 mt-1">{!! $match[0] !!}</div>
+                        <div class="w-1/3 px-4">
+                            <div class="font-semibold text-gray-700"><span v-text="listing.address"></span><br><span v-text="listing.city + ', ' + listing.state"></span></div>
+                        </div>
                     </div>
-                @endforeach
+                    <div class="text-gray-700 leading-relaxed border-t border-gray-200 pt-2 mt-1" v-text="listing.excerpt"></div>
+                </div>
             </div>
         </main>
         <aside class="w-1/2">
@@ -95,13 +89,33 @@
                     style="width:100%; height:100%"
                     ref="mapRef"
                 >
-                    @foreach($listings as $listing)
-                        <gmap-marker
-                            :position="{lat:{{ $listing->lat }}, lng:{{ $listing->long }}}"
-                            :clickable="true"
-                            :draggable="false"
-                        ></gmap-marker>
-                    @endforeach
+                    <gmap-info-window
+                        :options="info.options"
+                        :position="info.listing.position"
+                        :opened="info.opened"
+                        @closeclick="handleInfoWindowClose"
+                    >
+                        <div class="info-window leading-normal">
+                            <h2 class="text-pink-600 block text-xl font-medium" v-html="info.listing.title"></h2>
+                            <h4 class="font-semibold mb-2 text-gray-700" v-html="info.listing.address + '<br>' + info.listing.city + ', ' + info.listing.state"></h4>
+                            <ul>
+                                <li
+                                    v-for="(tag, tagIndex) in info.listing.tags"
+                                    :key="tagIndex"
+                                    v-text="tag"
+                                    class="inline-block uppercase tracking-wide text-gray-600 text-xs font-bold mr-3"
+                                ></li>
+                            </ul>
+                        </div>
+                    </gmap-info-window>
+                    <gmap-marker
+                        v-for="(listing, listingIndex) in filteredListings"
+                        :key="listingIndex"
+                        :position="listing.position"
+                        :clickable="true"
+                        :draggable="false"
+                        @click="handleMarkerClicked(listing)"
+                    ></gmap-marker>
                 </gmap-map>
             @endif
         </aside>
@@ -112,10 +126,39 @@
         const app = new Vue({
             data() {
                 return {
+                    info: {
+                        opened: false,
+                        listing: {},
+                        options: {
+                            pixelOffset: {
+                                width: 0,
+                                height: -35
+                            }
+                        }
+                    },
                     search: '',
                     city: '',
                     tags: [],
-                    listings: []
+                    listings: [
+                        @foreach($listings as $listing)
+                            @php
+                                preg_match('/<p>(.*?)<\/p>/s', $listing->body, $match);
+                            @endphp
+                        {
+                            title:"{{ $listing->title }}",
+                            path:"{{ $listing->path }}",
+                            tags:[@foreach(explode(',', $listing->tags) as $tag)"{{ $tag }}",@endforeach],
+                            address:"{{ $listing->address }}",
+                            city:"{{ $listing->city }}",
+                            state:"{{ $listing->state }}",
+                            position:{
+                                lat:{{ $listing->lat }},
+                                lng:{{ $listing->long }}
+                            },
+                            excerpt:"{{ $match[1] }}"
+                        },
+                        @endforeach
+                    ]
                 }
             },
             created() {
@@ -129,6 +172,14 @@
                     } else {
                         this.tags.splice(this.tags.indexOf(tag), 1);
                     }
+                },
+                handleMarkerClicked(listing) {
+                    this.info.listing = listing;
+                    this.info.opened = true;
+                },
+                handleInfoWindowClose() {
+                    this.info.listing = {};
+                    this.info.opened = false;
                 }
             },
             computed: {
