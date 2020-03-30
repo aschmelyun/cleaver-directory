@@ -14,6 +14,7 @@ mix.webpackConfig({
 mix.setPublicPath('./')
    .js('resources/assets/js/app.js', 'dist/assets/js')
    .sass('resources/assets/sass/app.scss', 'dist/assets/css')
+   .copy('resources/assets/images/', 'dist/assets/images')
    .options({
        processCssUrls: false
    })
