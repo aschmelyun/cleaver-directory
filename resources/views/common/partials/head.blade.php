@@ -14,13 +14,13 @@
     <meta property="og:description" content="{{ $description ?? '' }}" />
     <meta property="og:url" content="{{ $meta_url ?? 'https://directory.usecleaver.com' }}{{ $path }}" />
     <meta property="og:site_name" content="Cleaver Directory" />
-    <meta property="og:image" content="{{ $meta_image ?? 'https://directory.usecleaver.com/assets/image/social-image.png' }}" />
+    <meta property="og:image" content="{{ $meta_image ?? 'https://directory.usecleaver.com/assets/images/social-image.png' }}" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:description" content="{{ $description ?? '' }}" />
     <meta name="twitter:title" content="{{ $title ?? 'Add A Title' }}" />
     <meta name="twitter:site" content="@aschmelyun" />
-    <meta name="twitter:image" content="{{ $meta_image ?? 'https://directory.usecleaver.com/assets/image/social-image.png' }}" />
+    <meta name="twitter:image" content="{{ $meta_image ?? 'https://directory.usecleaver.com/assets/images/social-image.png' }}" />
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/icons/apple-icon-60x60.png">
