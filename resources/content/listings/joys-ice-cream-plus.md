@@ -3,11 +3,11 @@ view: layout.listing
 path: /joys-ice-cream-plus
 tags: delivery,take-out,desserts
 title: Joy's Ice Cream Plus
-address: 3433 SW Darwin Blvd
-city: Port St. Lucie
+address: 4959 US Hwy 1
+city: Fort Pierce
 state: FL
-lat: 27.242350
-long: -80.361060
+lat: 27.375380
+long: -80.328210
 ---
 
 Down-to-earth, family-owned store offering many varieties of handcrafted ice cream plus cakes too.

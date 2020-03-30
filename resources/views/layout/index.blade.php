@@ -184,13 +184,21 @@
             },
             computed: {
                 filteredListings() {
-                    if(!this.tags.length) {
-                        return this.listings;
+                    let listings = this.listings;
+
+                    if(this.city) {
+                        listings = listings.filter((listing, index) => {
+                            return listing.city === this.city;
+                        });
                     }
 
-                    return this.listings.filter((listing, index) => {
-                        return this.tags.every(tag => listing.tags.includes(tag));
-                    });
+                    if(this.tags.length) {
+                        listings = listings.filter((listing, index) => {
+                            return this.tags.every(tag => listing.tags.includes(tag));
+                        });
+                    }
+
+                    return listings;
                 }
             }
         }).$mount('#app');
