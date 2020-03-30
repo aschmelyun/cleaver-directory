@@ -1,9 +1,9 @@
 {
-    "name": "aschmelyun/cleaver",
-    "description": "A blazing-fast static site generator using Laravel's Blade templating engine",
+    "name": "aschmelyun/cleaver-directory",
+    "description": "A blazing-fast static site generator for local directories built with PHP and Laravel's Blade",
     "type": "project",
     "license": "MIT",
-    "keywords": ["laravel", "static", "site", "generator", "blade", "json", "markdown"],
+    "keywords": ["laravel", "static", "site", "generator", "blade", "json", "markdown", "directory"],
     "authors": [
         {
             "name": "Andrew Schmelyun",
