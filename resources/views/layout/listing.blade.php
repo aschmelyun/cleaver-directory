@@ -1,8 +1,8 @@
 @extends('common.default')
 @section('content')
-    <div class="flex flex-wrap h-auto lg:h-full" id="app">
+    <div class="flex flex-wrap h-auto lg:h-full pt-16" id="app">
         <main class="w-full lg:w-1/2 order-last lg:order-first bg-gray-100 overflow-y-scroll">
-            <div class="mt-8 lg:mt-24 px-4 lg:px-8">
+            <div class="mt-8 px-4 lg:px-8">
                 <div class="bg-white mb-6 px-6 py-4">
                     <div class="flex flex-wrap items-start -mx-4">
                         <div class="w-full lg:w-2/3 px-4">

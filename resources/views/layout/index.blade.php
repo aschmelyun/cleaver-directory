@@ -15,9 +15,9 @@
         ->unique();
 @endphp
 @section('content')
-    <div class="flex flex-wrap h-auto lg:h-full" id="app">
+    <div class="flex flex-wrap h-auto lg:h-full pt-16" id="app">
         <main class="w-full h-auto lg:h-full lg:w-1/2 order-last lg:order-first bg-gray-100 overflow-y-auto lg:overflow-y-scroll">
-            <div class="bg-white pt-8 lg:pt-24 pb-4 lg:pb-12 px-4 lg:px-8">
+            <div class="bg-white pt-8 pb-4 lg:pb-12 px-4 lg:px-8">
                 <div class="flex flex-wrap -mx-4">
                     <div class="w-full lg:w-1/2 px-4 mb-4 lg:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="search">
